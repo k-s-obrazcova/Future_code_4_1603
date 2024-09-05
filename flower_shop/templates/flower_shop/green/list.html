@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title_name %}
+    Каталог растений
+{% endblock %}
+
+{% block content %}
+    <h1>Растения</h1>
+    <div class="row">
+        {% for object in object_list %}
+            {% include 'flower_shop/_inc/_card.html' with url_name='green_detail' %}
+        {% empty %}
+            <h3>Растения отсутствуют</h3>
+        {% endfor %}
+    </div>
+{% endblock %}

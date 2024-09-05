@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title_name %}
+    Подробнее о букете
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Подробнее о {{ object.name }}</h1>
+        <table class="table table-bordered my-2">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Стоимость</th>
+                <th>Количество цветов</th>
+                <th>Цвет</th>
+                <th>Изображение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ object.name }}</td>
+                <td>
+                    {% if object.description %}
+                        {{ object.description }}
+                    {% else %}
+                        Описание отсутствует
+                    {% endif %}
+                </td>
+                <td>{{ object.price }} руб.</td>
+                <td>{{ object.flower_count }} шт.</td>
+                <td>{{ object.color }}</td>
+                <td>
+                    {% if object.photo %}
+                        <img src="{{ object.photo.url }}" class="card-img-top" alt="...">
+                    {% else %}
+                        <img src="{% static 'shop/image/no_photo.jpg' %}" class="card-img-top" alt="...">
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'flower_list' %}" class="btn btn-outline-success">Обратно к каталогу цветов</a>
+    </div>
+{% endblock %}
